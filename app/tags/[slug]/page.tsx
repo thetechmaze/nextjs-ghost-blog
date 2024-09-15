@@ -1,8 +1,14 @@
-import { getPosts } from "@/actions/getPosts";
+import { getPostsByTag } from "@/actions/getPostsByTag";
 import Header from "@/components/Header";
 import PostCard, { IPost } from "@/components/PostCard";
 
-export default async function Home() {
+export default async function Tag({
+  params,
+}: {
+  params: {
+    slug: string;
+  };
+}) {
   const SamplePost = {
     slug: "welcome-short",
     id: "5c7ece47da174000c0c5c6d7",
@@ -29,16 +35,14 @@ export default async function Home() {
       },
     ],
   };
-
-  const posts: IPost[] = await getPosts();
+  const posts: IPost[] = await getPostsByTag(params.slug);
   return (
     <div className="px-10 md:px-40 bg-slate-800 text-white min-h-screen">
       <Header />
-      <div className="mt-12 pb-12 w-full flex flex-col sm:flex-row flex-wrap space-x-4 space-y-5 justify-center ">
+      <div className="mt-12 w-full flex flex-col sm:flex-row flex-wrap space-x-4 space-y-5 justify-center pb-10">
         <div className="hidden">
           <PostCard data={SamplePost} />
         </div>
-
         {posts.map((post, idx) => (
           <PostCard key={idx} data={post} />
         ))}

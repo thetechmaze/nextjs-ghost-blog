@@ -2,7 +2,7 @@ import { getPosts } from "@/actions/getPosts";
 import Header from "@/components/Header";
 import PostCard, { IPost } from "@/components/PostCard";
 
-export default async function Home() {
+export default async function Blog() {
   const SamplePost = {
     slug: "welcome-short",
     id: "5c7ece47da174000c0c5c6d7",
