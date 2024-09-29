@@ -32,7 +32,7 @@ export default function PostCard({
         {/* feature image */}
         <div>
           <Image
-            src={data.feature_image}
+            src={data.feature_image? data.feature_image : ''} // avoid post with no images
             alt={
               data.feature_image_alt
                 ? data.feature_image_alt
