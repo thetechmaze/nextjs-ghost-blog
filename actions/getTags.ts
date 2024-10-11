@@ -1,7 +1,8 @@
 "use server";
 
+// some of the lines with comments have been added after the recording of tutorial to improve the fetching of data
 import { ITag } from "@/components/PostCard";
-import { revalidatePath } from 'next/cache'; // clear the cache for a specific path
+import { revalidatePath } from "next/cache"; // clear the cache for a specific path
 
 export async function getTags() {
   const tagsUrl = `${process.env.GHOST_API_URL}/ghost/api/content/tags/?key=${process.env.GHOST_CONTENT_API_KEY}`;
@@ -22,6 +23,6 @@ export async function getTags() {
 
   if (tags == undefined) tags = [];
   // clear cache so clientside can detect changes in data
-  revalidatePath('/blog');
+  revalidatePath("/blog");
   return tags;
 }
