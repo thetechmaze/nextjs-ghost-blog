@@ -1,6 +1,7 @@
 "use server";
 
 import { IPost } from "@/components/PostCard";
+import { revalidatePath } from 'next/cache'; // clear the cache for a specific path
 
 export async function getPosts() {
   let posts;
@@ -32,6 +33,9 @@ export async function getPosts() {
       (post.updated_at = post.updated_at.split("T")[0])
     )
   );
+  
+  // clear cache so clientside can detect changes in data
+  revalidatePath('/blog');
 
   return posts;
 }
